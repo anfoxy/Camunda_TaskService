@@ -26,4 +26,8 @@ public class CamundaProcessService {
                 .startProcessInstanceByKey(NameCamundaProcess.BASE_TASK_PROCESS.getName(), variables);
         return processInstance.getId();
     }
+
+    public String complete(Long idTask) {
+        return null;
+    }
 }

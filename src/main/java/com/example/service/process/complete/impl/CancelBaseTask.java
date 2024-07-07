@@ -19,7 +19,6 @@ public class CancelBaseTask  implements ProcessTaskStrategy {
     @Override
     public void execute(CompleteUserTaskDto completeUserTaskDto) {
         Optional<BaseTaskEntity> baseTaskEntity = baseTaskService.getById(completeUserTaskDto.getIdTask());
-
         baseTaskEntity.ifPresent(task -> {
             task.setStatus(StatusTask.CANCEL.getId());
             baseTaskService.saveBaseTask(task);

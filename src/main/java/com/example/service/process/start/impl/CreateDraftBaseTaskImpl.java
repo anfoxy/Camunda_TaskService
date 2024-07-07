@@ -15,13 +15,13 @@ public class CreateDraftBaseTaskImpl implements CreateDraftBaseTask {
    private final BaseTaskService baseTaskService;
    private final BaseTaskEntityMapper baseTaskEntityMapper;
 
-   public Long createDraftTask(BaseTaskDto baseTaskDto) {
+   public BaseTaskEntity createDraftTask(BaseTaskDto baseTaskDto) {
       BaseTaskEntity baseTaskEntity = baseTaskEntityMapper.toEntity(baseTaskDto);
       baseTaskEntity = baseTaskService.saveBaseTask(baseTaskEntity);
 
       //сохраняем в таблицу с задачами
 
-      return baseTaskEntity.getId();
+      return baseTaskEntity;
    }
 
 }
