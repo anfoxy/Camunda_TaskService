@@ -30,7 +30,4 @@ public class CamundaTaskService {
         return camundaTaskRepository.getByTask(BaseTaskEntity.builder().id(id).build());
     }
 
-    public void completeCamundaTask(Long id) {
-
-    }
 }

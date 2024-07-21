@@ -11,14 +11,12 @@ public class BaseTaskDto {
 
     private TaskUserDto task;
 
-    private UserDto userId;
-
-    private String username;
+    private String username; //+
 
     private Long status;
 
-    private LocalDateTime time;
+    private LocalDateTime time; //+
 
-    private String email;
+    private String email; //+
 
 }

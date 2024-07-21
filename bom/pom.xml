@@ -18,6 +18,9 @@
         <spring.version>3.1.5</spring.version>
         <camunda.dataformat.version>1.23.0</camunda.dataformat.version>
         <camunda.bpm.version>7.21.0</camunda.bpm.version>
+        <kafka-clients.version>3.7.1</kafka-clients.version>
+        <jackson-databind.version>2.17.2</jackson-databind.version>
+        <kafka.version>3.2.1</kafka.version>
         <spring.actuator.version>3.0.1</spring.actuator.version>
         <springdoc.version>1.7.0</springdoc.version>
         <snakeyaml.version>2.0</snakeyaml.version>
@@ -35,6 +38,17 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>${kafka-clients.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>${kafka.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.camunda.spin</groupId>
                 <artifactId>camunda-spin-dataformat-all</artifactId>

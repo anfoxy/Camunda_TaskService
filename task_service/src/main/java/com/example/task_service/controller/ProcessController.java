@@ -1,31 +1,38 @@
 package com.example.task_service.controller;
 
-import org.camunda.bpm.engine.RuntimeService;
-import org.camunda.bpm.engine.runtime.ProcessInstance;
+import com.example.task_service.dto.KafkaMessage;
+import com.example.task_service.kafka.KafkaProducerService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 @RestController
+@RequiredArgsConstructor
+@Slf4j
 public class ProcessController {
 
-    private final RuntimeService runtimeService;
-
-    public ProcessController(RuntimeService runtimeService) {
-        this.runtimeService = runtimeService;
-    }
+    private final KafkaProducerService kafkaProducerService;
 
     @PostMapping("/start-process")
-    public ResponseEntity<String> startProcess() {
-        Map<String, Object> variables = new HashMap<>();
-        variables.put("startDate", new Date());
-
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("simpleProcess", variables);
-
-        return ResponseEntity.ok(processInstance.getId());
+    public ResponseEntity<Boolean> startProcessKafka(@RequestBody KafkaMessage kafkaMessage) {
+        try {
+            kafkaProducerService.send("CamundaCreateUserTaskTopic", kafkaMessage);
+            return ResponseEntity.ok(Boolean.TRUE);
+        } catch (Exception ex) {
+            return ResponseEntity.ok(Boolean.FALSE);
+        }
+    }
+    @PostMapping("/complete-task")
+    public ResponseEntity<Boolean> completeTask(@RequestBody KafkaMessage kafkaMessage) {
+        try {
+            kafkaProducerService.send("CamundaCompleteUserTaskTopic", kafkaMessage);
+            return ResponseEntity.ok(Boolean.TRUE);
+        } catch (Exception ex) {
+            return ResponseEntity.ok(Boolean.FALSE);
+        }
     }
 }
