@@ -1,3 +1,4 @@
+/*
 package com.example.task_service.kafka;
 
 import com.example.task_service.dto.KafkaMessage;
@@ -12,4 +13,4 @@ public class KafkaConsumerService {
     public void consume(KafkaMessage myMsg) {
         log.info(String.format("!!!!!!!!!!!!!!!!!!Received: " + myMsg));
     }
-}
+}*/

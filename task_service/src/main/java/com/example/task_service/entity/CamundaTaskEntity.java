@@ -2,6 +2,7 @@ package com.example.task_service.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -18,10 +19,12 @@ public class CamundaTaskEntity extends CommonField {
     @Id
     private String id;
 
-    @OneToOne
+    @ManyToOne
+    @NotNull
     @JoinColumn(name = "id_task")
     private BaseTaskEntity task;
 
-    private LocalDateTime complete;
+    private LocalDateTime completeDt;
 
+    private String nameProcess;
 }

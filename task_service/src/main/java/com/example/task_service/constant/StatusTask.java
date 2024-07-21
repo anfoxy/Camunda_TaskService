@@ -9,9 +9,9 @@ import lombok.RequiredArgsConstructor;
 public enum StatusTask {
 
     CREATE(1L,"Create"),
-    RUN(2L,"run"),
-    COMPLETE(3L,"complete"),
-    CANCEL(4L,"cancel");
+    RUN(2L,"Run"),
+    COMPLETE(3L,"Complete"),
+    CANCEL(4L,"Cancel");
 
     private final Long id;
     private final String name;

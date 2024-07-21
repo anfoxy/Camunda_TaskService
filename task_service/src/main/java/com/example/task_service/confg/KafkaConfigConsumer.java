@@ -23,7 +23,7 @@ import java.util.Map;
 @EnableKafka
 public class KafkaConfigConsumer {
 
-
+/*
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
 
@@ -38,8 +38,8 @@ public class KafkaConfigConsumer {
         jsonDeserializer.addTrustedPackages("*"); // Или укажите конкретные пакеты, если это возможно
 
         return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(), jsonDeserializer);
- /*         // This config tells mapper that these two classes although in different package but are same.
-        return new DefaultKafkaConsumerFactory<>(config);*/
+ *//*         // This config tells mapper that these two classes although in different package but are same.
+        return new DefaultKafkaConsumerFactory<>(config);*//*
     }
 
     @Bean
@@ -48,7 +48,7 @@ public class KafkaConfigConsumer {
         ConcurrentKafkaListenerContainerFactory<String, KafkaMessage> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory);
         return factory;
-    }
+    }*/
 
 }
 

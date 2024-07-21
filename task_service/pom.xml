@@ -16,8 +16,6 @@
         <relativePath>../bom/pom.xml</relativePath>
     </parent>
 
-
-
         <dependencies>
             <dependency>
                 <groupId>org.springframework.kafka</groupId>

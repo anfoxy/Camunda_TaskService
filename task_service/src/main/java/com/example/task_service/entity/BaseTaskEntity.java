@@ -1,14 +1,8 @@
 package com.example.task_service.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,20 +24,20 @@ public class BaseTaskEntity extends CommonField {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "id_task")
-    private TaskUserEntity task;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity userId;
 
-    private String username;
+    @NotNull
+    private Long ProcessStatus;
 
-    private Long status;
-
+    @NotNull
     private LocalDateTime time;
 
+    @NotNull
     private String email;
 
+    @OneToOne
+    @JoinColumn(name = "idTask")
+    private TaskUserEntity taskUser;
 }

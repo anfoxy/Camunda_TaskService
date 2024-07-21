@@ -7,9 +7,7 @@ import java.util.List;
 @Data
 public class TaskUserDto {
 
-    private Long id_task;
-
-    private BaseTaskDto baseTask;
+    private Long idTask;
 
     private TaskUserDto parent;
 
@@ -20,7 +18,4 @@ public class TaskUserDto {
     private String name;
 
     private Long status;
-
-    private Long type;
-
 }

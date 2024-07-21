@@ -1,14 +1,13 @@
 package com.example.task_service.controller.base;
 
 
+import com.example.task_service.dto.BaseTaskDto;
+import com.example.task_service.dto.TaskUserDto;
+import com.example.task_service.entity.BaseTaskEntity;
 import com.example.task_service.entity.TaskUserEntity;
 import com.example.task_service.service.jpa.TaskUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,14 +18,18 @@ public class TaskUserController {
     @Autowired
     private TaskUserService taskService;
 
-    @PostMapping
-    public TaskUserEntity createTask(@RequestBody TaskUserEntity task) {
-        return taskService.saveTask(task);
+    @GetMapping("/{taskId}")
+    public TaskUserEntity getBaseTaskEntityById(@PathVariable Long taskId) {
+        return taskService.getById(taskId);
     }
 
-    @GetMapping
-    public List<TaskUserEntity> getAllTasks() {
-        return taskService.getAllTasks();
+    @PutMapping("/{baseTaskId}/{taskId}")
+    public TaskUserEntity addTask(@PathVariable Long baseTaskId, @PathVariable Long taskId, @RequestBody TaskUserDto taskDto) {
+        return taskService.addTask(baseTaskId, taskId, taskDto);
     }
 
+    @PutMapping("/{taskId}")
+    public TaskUserEntity update(@PathVariable Long taskId, @RequestBody TaskUserDto taskDto) {
+        return taskService.update(taskId, taskDto);
+    }
 }

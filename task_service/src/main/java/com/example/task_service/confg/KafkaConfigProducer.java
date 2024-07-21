@@ -1,3 +1,4 @@
+/*
 package com.example.task_service.confg;
 
 import com.example.task_service.dto.KafkaMessage;
@@ -61,3 +62,4 @@ public class KafkaConfigProducer {
     }
 
 }
+*/

@@ -1,6 +1,10 @@
 package com.example.task_service.service.jpa;
 
+import com.example.task_service.dto.BaseTaskDto;
 import com.example.task_service.entity.BaseTaskEntity;
+import com.example.task_service.entity.TaskUserEntity;
+import com.example.task_service.exception.TaskServiceNotFoundException;
+import com.example.task_service.mapper.BaseTaskEntityMapper;
 import com.example.task_service.repository.BaseTaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,15 +18,21 @@ public class BaseTaskService {
 
     private final BaseTaskRepository baseTaskRepository;
 
-    public BaseTaskEntity saveBaseTask(BaseTaskEntity baseTask) {
+    private final BaseTaskEntityMapper baseTaskEntityMapper;
+
+
+    public BaseTaskEntity saveBaseTask(BaseTaskDto baseTask, TaskUserEntity taskUserEntity) {
+        BaseTaskEntity baseTaskEntity = baseTaskEntityMapper.toEntity(baseTask);
+        baseTaskEntity.setTaskUser(taskUserEntity);
+        return baseTaskRepository.save(baseTaskEntity);
+    }
+
+    public BaseTaskEntity update(BaseTaskEntity baseTask) {
         return baseTaskRepository.save(baseTask);
     }
 
-    public List<BaseTaskEntity> getAllBaseTasks() {
-        return baseTaskRepository.findAll();
-    }
-
-    public Optional<BaseTaskEntity> getById(Long id){
-        return Optional.of(baseTaskRepository.getById(id));
+    public BaseTaskEntity getById(Long id){
+        return Optional.of(baseTaskRepository.getReferenceById(id))
+                .orElseThrow(() -> new TaskServiceNotFoundException("По id = %d нет записи".formatted(id)));
     }
 }
