@@ -8,7 +8,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public class TypeTaskProcess {
 
-    public static final String START = "CancelBaseTask";
-    public static final String CANCEL = "CompleteBaseTask";
-    public static final String COMPLETE = "StartBaseTask";
+    public static final String CREATE = "CreateBaseTask";
+    public static final String START = "StartBaseTask";
+    public static final String CANCEL = "CancelBaseTask";
+    public static final String COMPLETE = "CompleteBaseTask";
 }

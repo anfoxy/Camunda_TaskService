@@ -1,5 +1,6 @@
 package com.example.task_service.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +15,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -23,6 +25,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Builder
 public class TaskUserEntity extends CommonField{
     @Id
@@ -31,10 +34,8 @@ public class TaskUserEntity extends CommonField{
 
     @ManyToOne
     @JoinColumn(name = "id_parent")
-    private TaskUserEntity parent;
-
-    @OneToMany(mappedBy = "parent")
-    private List<TaskUserEntity> tasks;
+    @JsonBackReference
+    private BaseTaskEntity parent;
 
     @NotNull
     private String description;

@@ -8,7 +8,6 @@ import lombok.Getter;
 public enum CamundaVariables {
 
     START_DATE("startDate"),
-    USER("user"),
     ID_BASE_TASK("idBaseTask");
 
     private final String name;

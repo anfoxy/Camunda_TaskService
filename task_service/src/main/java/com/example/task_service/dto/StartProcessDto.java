@@ -1,22 +1,11 @@
 package com.example.task_service.dto;
 
-import com.example.task_service.entity.UserEntity;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Data
-public class StartProcessDto {
+public class StartProcessDto <T extends BaseInfoDto> {
 
-    private UserEntity userId;
+    private T info;
 
-    private Long ProcessStatus;
-
-    private LocalDateTime time;
-
-    private String email;
-
-    private String description;
-
-    private String name;
+    private String nameProcess;
 }

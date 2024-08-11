@@ -1,9 +1,6 @@
 package com.example.task_service.controller.base;
 
-
-import com.example.task_service.dto.BaseTaskDto;
 import com.example.task_service.dto.TaskUserDto;
-import com.example.task_service.entity.BaseTaskEntity;
 import com.example.task_service.entity.TaskUserEntity;
 import com.example.task_service.service.jpa.TaskUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +16,22 @@ public class TaskUserController {
     private TaskUserService taskService;
 
     @GetMapping("/{taskId}")
-    public TaskUserEntity getBaseTaskEntityById(@PathVariable Long taskId) {
+    public TaskUserEntity getTaskUserEntityById(@PathVariable Long taskId) {
         return taskService.getById(taskId);
     }
 
-    @PutMapping("/{baseTaskId}/{taskId}")
-    public TaskUserEntity addTask(@PathVariable Long baseTaskId, @PathVariable Long taskId, @RequestBody TaskUserDto taskDto) {
-        return taskService.addTask(baseTaskId, taskId, taskDto);
+    @GetMapping("/parent/{taskId}")
+    public List<TaskUserEntity> getTaskUserEntityByParentId(@PathVariable Long taskId) {
+        return taskService.getByParentId(taskId);
     }
 
-    @PutMapping("/{taskId}")
-    public TaskUserEntity update(@PathVariable Long taskId, @RequestBody TaskUserDto taskDto) {
-        return taskService.update(taskId, taskDto);
+    @PostMapping("/{taskId}")
+    public TaskUserEntity addTask(@PathVariable Long taskId, @RequestBody TaskUserDto taskDto) {
+        return taskService.addTask(taskId, taskDto);
+    }
+
+    @PutMapping("/")
+    public TaskUserEntity updateBaseTaskEntityById(@RequestBody TaskUserDto taskDto) {
+        return taskService.updateAndCheck(taskDto);
     }
 }

@@ -62,10 +62,11 @@ services:
     ports:
       - "8081:8081"
     environment:
+      - CAMUNDA_BPM_CLIENT_BASE_URL=http://camunda:8080/engine-rest
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgress:5432/camunda
       - SPRING_DATASOURCE_USERNAME=camunda
       - SPRING_DATASOURCE_PASSWORD=camunda
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
 
 
   task_service:

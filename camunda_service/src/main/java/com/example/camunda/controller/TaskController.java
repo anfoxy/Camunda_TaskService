@@ -1,13 +1,12 @@
 package com.example.camunda.controller;
 
-import com.example.camunda.model.KafkaMessage;
+import com.example.camunda.dto.KafkaMessage;
+import com.example.camunda.receive.CamundaMessageSender;
 import com.example.camunda.service.TaskProcessService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TaskController {
 
     private final TaskProcessService taskProcessService;
+    private final CamundaMessageSender camundaMessageSender;
 
     @PostMapping("/start-process")
     public ResponseEntity<String> startProcess(@RequestBody KafkaMessage message) {
@@ -27,4 +27,9 @@ public class TaskController {
         taskProcessService.completeUserTask(message);
         return ResponseEntity.ok("Task completed");
     }
+    @GetMapping("/templete/{taskId}")
+    public void getBaseTaskEntityByUserId(@PathVariable String taskId) {
+         camundaMessageSender.sendTerminateMessage(taskId);
+    }
+
 }

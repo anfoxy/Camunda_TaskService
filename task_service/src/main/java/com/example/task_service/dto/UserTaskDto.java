@@ -1,4 +1,4 @@
-package com.example.camunda.model;
+package com.example.task_service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,15 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-public class KafkaMessage implements Serializable {
-    private UUID id;
-    private String user;
-    private Long idBaseTask;
+public class UserTaskDto implements Serializable {
+
+    private String id;
+
+    private Long task;
+
     private String nameProcess;
 }

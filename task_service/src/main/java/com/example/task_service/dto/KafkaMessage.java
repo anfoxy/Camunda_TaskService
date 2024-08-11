@@ -13,8 +13,9 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 public class KafkaMessage implements Serializable {
-    private UUID id;
+    private String id;
     private String user;
+    private String status;
     private Long idBaseTask;
     private String nameProcess;
 }

@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Table(name = "camunda_task")
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -19,10 +20,8 @@ public class CamundaTaskEntity extends CommonField {
     @Id
     private String id;
 
-    @ManyToOne
-    @NotNull
-    @JoinColumn(name = "id_task")
-    private BaseTaskEntity task;
+    @Column(name = "id_tasks", nullable = false)
+    private Long task;
 
     private LocalDateTime completeDt;
 
