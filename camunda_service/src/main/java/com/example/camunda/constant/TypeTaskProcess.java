@@ -1,6 +1,5 @@
 package com.example.camunda.constant;
 
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

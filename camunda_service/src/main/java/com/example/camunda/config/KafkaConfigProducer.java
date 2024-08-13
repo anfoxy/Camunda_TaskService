@@ -1,6 +1,5 @@
 package com.example.camunda.config;
 
-import com.example.camunda.dto.KafkaMessage;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;

@@ -1,6 +1,5 @@
 package com.example.task_service.service.jpa;
 
-import com.example.task_service.constant.StatusTask;
 import com.example.task_service.entity.CamundaTaskEntity;
 import com.example.task_service.repository.CamundaTaskRepository;
 import lombok.RequiredArgsConstructor;

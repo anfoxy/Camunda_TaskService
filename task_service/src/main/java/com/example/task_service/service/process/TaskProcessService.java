@@ -6,9 +6,11 @@ import com.example.task_service.dto.CompleteProcessDto;
 import com.example.task_service.dto.StartProcessDto;
 import com.example.task_service.entity.BaseTaskEntity;
 
+import java.util.Map;
+
 public interface TaskProcessService {
 
-    <T extends BaseInfoDto> Long startProcess(StartProcessDto<T> startProcessDto);
+    <T extends BaseInfoDto> Map<String,Object> startProcess(StartProcessDto<T> startProcessDto);
 
     <T extends BaseInfoDto> void completeUserTask(CompleteProcessDto<T>  completeProcessDto);
 }

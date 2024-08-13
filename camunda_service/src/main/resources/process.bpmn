@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_10lanr8" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.24.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
   <bpmn:collaboration id="Collaboration_0dg0ktx">
-    <bpmn:participant id="Participant_0k8wnfn" name="Выполение задачи" processRef="simpleProcess" />
+    <bpmn:participant id="Participant_0k8wnfn" name="Выполение задачи" processRef="simpleProcesss" />
   </bpmn:collaboration>
-  <bpmn:process id="simpleProcess" name="Simple Process" isExecutable="true">
+  <bpmn:process id="simpleProcesss" name="Simple Processs" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_0ubi2oz</bpmn:outgoing>
       <bpmn:outgoing>Flow_1s1rw10</bpmn:outgoing>
@@ -38,16 +38,16 @@
       <bpmn:outgoing>Flow_0l1sofg</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:serviceTask id="start_task" name="Подготовка задачи на запуск" camunda:type="external" camunda:topic="prepareTaskTopic">
-      <bpmn:incoming>Flow_0ubi2oz</bpmn:incoming>
+      <bpmn:incoming>Flow_06536h5</bpmn:incoming>
       <bpmn:outgoing>Flow_0lvkaxi</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:boundaryEvent id="Event_0zbarip" attachedToRef="complete_user_task">
       <bpmn:outgoing>Flow_0gqcakd</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_0jz6g9j">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1M</bpmn:timeDuration>
+        <bpmn:timeDate xsi:type="bpmn:tFormalExpression">${time}</bpmn:timeDate>
       </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
-    <bpmn:sequenceFlow id="Flow_0ubi2oz" sourceRef="StartEvent_1" targetRef="start_task" />
+    <bpmn:sequenceFlow id="Flow_0ubi2oz" sourceRef="StartEvent_1" targetRef="initializeTask" />
     <bpmn:sequenceFlow id="Flow_1s1rw10" sourceRef="StartEvent_1" targetRef="terminate" />
     <bpmn:sequenceFlow id="Flow_14xnjf7" sourceRef="terminate" targetRef="Event_1mh9o4r" />
     <bpmn:sequenceFlow id="Flow_0lvkaxi" sourceRef="start_task" targetRef="start_user_task" />
@@ -61,6 +61,15 @@
       <bpmn:incoming>Flow_0xarto4</bpmn:incoming>
       <bpmn:terminateEventDefinition id="TerminateEventDefinition_1veo574" />
     </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_06536h5" sourceRef="initializeTask" targetRef="start_task" />
+    <bpmn:scriptTask id="initializeTask" name="Инициализация" scriptFormat="javascript">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_0ubi2oz</bpmn:incoming>
+      <bpmn:outgoing>Flow_06536h5</bpmn:outgoing>
+      <bpmn:script>    if (execution.getVariable("time") == null) {
+      execution.setVariable("time", "PT1M");
+    }</bpmn:script>
+    </bpmn:scriptTask>
   </bpmn:process>
   <bpmn:message id="Message_1q0lqw9" name="terminate" />
   <bpmn:message id="Message_1e6d4lt" name="terminate" />
@@ -106,6 +115,9 @@
       <bpmndi:BPMNShape id="Event_0v6d76z_di" bpmnElement="Event_087ja17">
         <dc:Bounds x="1252" y="152" width="36" height="36" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1lesjsu_di" bpmnElement="initializeTask" bioc:stroke="rgb(67, 160, 71)" bioc:fill="rgb(200, 230, 201)">
+        <dc:Bounds x="260" y="317" width="100" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_0j5n8mu" bpmnElement="Event_0zbarip">
         <dc:Bounds x="892" y="299" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -114,7 +126,7 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0ubi2oz_di" bpmnElement="Flow_0ubi2oz">
         <di:waypoint x="215" y="357" />
-        <di:waypoint x="390" y="357" />
+        <di:waypoint x="260" y="357" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1s1rw10_di" bpmnElement="Flow_1s1rw10">
         <di:waypoint x="197" y="375" />
@@ -153,6 +165,10 @@
       <bpmndi:BPMNEdge id="Flow_0gqcakd_di" bpmnElement="Flow_0gqcakd">
         <di:waypoint x="910" y="299" />
         <di:waypoint x="910" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06536h5_di" bpmnElement="Flow_06536h5">
+        <di:waypoint x="360" y="357" />
+        <di:waypoint x="390" y="357" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

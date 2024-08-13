@@ -1,7 +1,6 @@
 package com.example.task_service.service.process.command.factory.impl;
 
 import com.example.task_service.constant.CommandType;
-import com.example.task_service.dto.KafkaMessage;
 import com.example.task_service.dto.ServiceTaskDto;
 import com.example.task_service.service.jpa.BaseTaskService;
 import com.example.task_service.service.process.command.SendMessageCommand;

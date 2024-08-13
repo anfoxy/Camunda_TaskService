@@ -5,6 +5,7 @@ import com.example.task_service.dto.ServiceTaskDto;
 import com.example.task_service.entity.BaseTaskEntity;
 import com.example.task_service.service.jpa.BaseTaskService;
 import com.example.task_service.service.jpa.CamundaTaskService;
+import org.springframework.transaction.annotation.Transactional;
 
 public class TimerCompleteCommand implements Command {
 
@@ -21,6 +22,7 @@ public class TimerCompleteCommand implements Command {
     }
 
     @Override
+    @Transactional
     public void execute() {
         BaseTaskEntity baseTaskEntity = baseTaskService.getById(kafkaMessage.getIdBaseTask());
         baseTaskEntity.setProcessStatus(StatusTask.COMPLETE_TIMER.getId());

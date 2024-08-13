@@ -20,7 +20,8 @@ public class ExecuteTasksService {
     private final KafkaProducerService<ServiceTaskDto> kafkaProducerService;
 
     public void executeTask(ExternalTask externalTask) {
-        Long idBaseTask = externalTask.getVariable(CamundaVariables.ID_BASE_TASK.getName());
+        Integer idBaseTaskInteger = externalTask.getVariable(CamundaVariables.ID_BASE_TASK.getName());
+        Long idBaseTask = idBaseTaskInteger != null ? idBaseTaskInteger.longValue() : null;
         kafkaProducerService.send(executeTasksTopic, ServiceTaskDto
                 .builder()
                 .idBaseTask(idBaseTask)

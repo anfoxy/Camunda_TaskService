@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 @Service
 @RequiredArgsConstructor
 public class PrepareTasksService {
@@ -26,7 +25,9 @@ public class PrepareTasksService {
 
     public void prepareTask(ExternalTask externalTask) {
         String processInstanceId = externalTask.getProcessInstanceId();
-        Long idBaseTask = externalTask.getVariable(CamundaVariables.ID_BASE_TASK.getName());
+
+        Integer idBaseTaskInteger = externalTask.getVariable(CamundaVariables.ID_BASE_TASK.getName());
+        Long idBaseTask = idBaseTaskInteger != null ? idBaseTaskInteger.longValue() : null;
 
         String id = taskService.createTaskQuery()
                 .processInstanceId(processInstanceId)

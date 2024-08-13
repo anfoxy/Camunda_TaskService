@@ -21,11 +21,13 @@ public class BaseTaskService {
 
     private final BaseTaskEntityMapper baseTaskEntityMapper;
 
+    @Transactional
     public BaseTaskEntity save(BaseTaskDto baseTask) {
         BaseTaskEntity baseTaskEntity = baseTaskEntityMapper.toEntity(baseTask);
         return baseTaskRepository.save(baseTaskEntity);
     }
 
+    @Transactional
     public BaseTaskEntity save(BaseTaskEntity baseTask) {
         return baseTaskRepository.save(baseTask);
     }

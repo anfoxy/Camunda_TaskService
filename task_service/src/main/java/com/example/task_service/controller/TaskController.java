@@ -4,7 +4,6 @@ import com.example.task_service.constant.TypeTaskProcess;
 import com.example.task_service.dto.BaseTaskDto;
 import com.example.task_service.dto.CompleteProcessDto;
 import com.example.task_service.dto.StartProcessDto;
-import com.example.task_service.entity.BaseTaskEntity;
 import com.example.task_service.service.process.impl.TaskProcessServiceDecorator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
@@ -23,7 +23,7 @@ public class TaskController {
     private final TaskProcessServiceDecorator taskProcessService;
 
     @PostMapping("/create_process")
-    public ResponseEntity<Long> createProcess(@RequestBody StartProcessDto<BaseTaskDto> startProcessDto) {
+    public ResponseEntity<Map<String,Object>> createProcess(@RequestBody StartProcessDto<BaseTaskDto> startProcessDto) {
         startProcessDto.setNameProcess(TypeTaskProcess.CREATE);
         return ResponseEntity.ok(taskProcessService.startProcess(startProcessDto));
     }

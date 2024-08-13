@@ -32,4 +32,8 @@ public class TaskController {
          camundaMessageSender.sendTerminateMessage(taskId);
     }
 
+    @PutMapping("/update")
+    public void updateProcess(@RequestBody KafkaMessage message) {
+        taskProcessService.updateTime(message);
+    }
 }

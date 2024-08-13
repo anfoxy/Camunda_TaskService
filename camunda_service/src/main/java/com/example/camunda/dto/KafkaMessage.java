@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Map;
 import java.util.UUID;
 
 @Data
@@ -14,8 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class KafkaMessage implements Serializable {
     private String id;
-    private String user;
+    private Map<String,Object> variables;
     private String status;
-    private Long idBaseTask;
     private String nameProcess;
 }

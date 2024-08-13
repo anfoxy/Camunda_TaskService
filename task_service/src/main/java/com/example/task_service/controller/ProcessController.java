@@ -1,10 +1,7 @@
 package com.example.task_service.controller;
 
-import com.example.task_service.constant.CommandType;
 import com.example.task_service.dto.KafkaMessage;
 import com.example.task_service.kafka.KafkaProducerService;
-import com.example.task_service.service.process.command.Command;
-import com.example.task_service.service.process.command.CommandFactoryRegistry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

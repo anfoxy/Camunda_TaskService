@@ -1,7 +1,6 @@
 package com.example.task_service.service.process.email.impl;
 
 import com.example.task_service.constant.TaskCompleteType;
-import com.example.task_service.constant.TypeTaskProcess;
 import com.example.task_service.entity.BaseTaskEntity;
 import com.example.task_service.service.process.email.Notification;
 import com.example.task_service.service.process.email.TaskComplete;

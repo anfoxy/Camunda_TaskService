@@ -1,6 +1,5 @@
 package com.example.task_service.constant;
 
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

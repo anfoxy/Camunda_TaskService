@@ -23,7 +23,7 @@ public class TaskProcessServiceImpl implements TaskProcessService {
     private final Map<String, StartProcessStrategy> startTaskStrategyMap;
 
     @Transactional
-    public <T extends BaseInfoDto> Long startProcess(StartProcessDto<T> startProcessDto) {
+    public <T extends BaseInfoDto> Map<String,Object> startProcess(StartProcessDto<T> startProcessDto) {
         return Optional.ofNullable(startTaskStrategyMap.get(startProcessDto.getNameProcess()))
                 .orElseThrow(() -> new TaskServiceException("Неизвестное имя процесса: " + startProcessDto.getNameProcess()))
                 .execute(startProcessDto);

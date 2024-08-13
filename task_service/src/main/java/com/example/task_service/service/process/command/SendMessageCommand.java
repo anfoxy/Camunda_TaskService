@@ -1,18 +1,15 @@
 package com.example.task_service.service.process.command;
 
 import com.example.task_service.constant.StatusTask;
-import com.example.task_service.dto.KafkaMessage;
 import com.example.task_service.dto.ServiceTaskDto;
 import com.example.task_service.entity.BaseTaskEntity;
 import com.example.task_service.exception.TaskServiceException;
 import com.example.task_service.service.jpa.BaseTaskService;
 import com.example.task_service.service.process.email.TaskComplete;
-import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-
 
 public class SendMessageCommand implements Command {
 

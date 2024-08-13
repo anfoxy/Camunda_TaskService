@@ -1,6 +1,5 @@
 package com.example.camunda.external;
 
-import com.example.camunda.constant.ExecuteTaskType;
 import com.example.camunda.constant.ServiceTaskType;
 import com.example.camunda.service.task.ExecuteTasksService;
 import lombok.RequiredArgsConstructor;

@@ -1,15 +1,10 @@
 package com.example.camunda.external;
 
 import com.example.camunda.constant.ServiceTaskType;
-import com.example.camunda.dto.UserTaskDto;
-import com.example.camunda.kafka.KafkaProducerService;
-import com.example.camunda.service.task.ExecuteTasksService;
 import com.example.camunda.service.task.PrepareTasksService;
 import lombok.RequiredArgsConstructor;
 import org.camunda.bpm.client.spring.annotation.ExternalTaskSubscription;
 import org.camunda.bpm.client.task.ExternalTaskHandler;
-import org.camunda.bpm.engine.TaskService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
